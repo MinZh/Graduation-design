@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+    
+    <package name="struts2" extends="json-default" namespace="/">
+        
+        <action name="getDianPu" class="PiLiangDaoRuAction" method="getDianPu">
+           <result type="json">
+              <param name="root">JSObj</param>
+           </result>
+        </action>
+        
+        <action name="getDianPuLeiBie" class="PiLiangDaoRuAction" method="getDianPuLeiBie">
+           <result type="json">
+              <param name="root">JSArr</param>
+           </result>
+        </action>  
+        
+        <action name="getShangPinZhuangTai" class="PiLiangDaoRuAction" method="getShangPinZhuangTai">
+           <result type="json">
+              <param name="root">JSArr</param>
+           </result>
+        </action>  
+        
+        <action name="getShangPin" class="PiLiangDaoRuAction" method="getShangPin">
+           <result type="json">
+              <param name="root">JSObj</param>
+           </result>
+        </action>        
+                
+        <action name="getShuLiang" class="PiLiangDaoRuAction" method="getShuLiang">
+           <result type="json">
+              <param name="root">MSG</param>
+           </result>
+        </action>  
+        
+        <action name="getFenXiaoFangShi2" class="PiLiangDaoRuAction" method="getFenXiaoFangShi2">
+            <result type="json">
+               <param name="root">JSArr</param>
+            </result>
+         </action>
+        
+         <action name="getChanPinXian2" class="PiLiangDaoRuAction" method="getChanPinXian2"> 
+            <result type="json">
+               <param name="root">JSArr</param> 
+            </result>
+         </action>
+        
+        <action name="DaoRuShangPin" class="PiLiangDaoRuAction" method="DaoRuShangPin">
+           <result type="json">
+              <param name="root">MSG</param>
+           </result>
+        </action> 
+        
+        <action name="Login" class="PiLiangDaoRuAction" method="Login">
+           <result type="json">
+              <param name="root">MSG</param>
+           </result>
+        </action>  
+        
+  
+  
+  
+ <!--     **********************************************单件发布，铺货**********************************************		 -->       
+        
+        
+         <action name="getLeiMu" class="faBuDanJianChanPinAction" method="getLeiMu">
+             	<result type="json">
+             		<param name="root">JSArr</param>
+             	</result>
+         </action>
+         
+         <action name="getShangPinByShangPinID" class="faBuDanJianChanPinAction" method="getShangPinByShangPinID">
+             	<result type="json">
+             		<param name="root">JSObj</param>
+             	</result>
+         </action>        
+             
+         <action name="getShangPinAll" class="faBuDanJianChanPinAction" method="getShangPinAll">
+             	<result type="json">
+             		<param name="root">JSArr</param>
+             	</result>
+         </action>      
+           
+         <action name="getChanPinXian" class="faBuDanJianChanPinAction" method="getChanPinXian">
+              	<result type="json">
+              		<param name="root">JSArr</param>
+              	</result> 
+          </action>  
+                 
+         <action name="getFenXiaoFangShi" class="faBuDanJianChanPinAction" method="getFenXiaoFangShi">
+              	<result type="json">
+              		<param name="root">JSArr</param> 
+             	</result> 
+          </action>     
+               
+         <action name="editChanPin" class="faBuDanJianChanPinAction" method="editChanPin">
+             	<result type="json">
+             		<param name="root">MSG</param>
+             	</result>
+         </action> 
+                
+         <action name="queryChanPinZiLiao" class="faBuDanJianChanPinAction" method="queryChanPinZiLiao">
+             	<result type="json">
+             		<param name="root">JSObj</param>
+             	</result>
+         </action> 
+             
+         <action name="getChanPinMingXi" class="faBuDanJianChanPinAction" method="getChanPinMingXi">
+             	<result type="json">
+             		<param name="root">JSObj</param>
+             	</result>
+         </action> 
+             
+         <action name="queryChanPinZiLiaoWeiPuHuo" class="faBuDanJianChanPinAction" method="queryChanPinZiLiaoWeiPuHuo">
+             	<result type="json">
+             		<param name="root">JSObj</param>
+             	</result>
+         </action>    
+         
+             <action name="zanTingXiaoShou" class="faBuDanJianChanPinAction" method="zanTingXiaoShou">
+             	<result type="json">
+             		<param name="root">MSG</param>
+             	</result>
+             </action>  
+             
+              <action name="puHuo" class="faBuDanJianChanPinAction" method="puHuo">
+             	<result type="json">
+             		<param name="root">MSG</param>
+             	</result>
+             </action>  
+             
+             <action name="zanTingPuHuo" class="faBuDanJianChanPinAction" method="zanTingPuHuo">
+             	<result type="json">
+             		<param name="root">MSG</param>
+             	</result>
+             </action>  
+             
+              <action name="kaiQiXiaoShou" class="faBuDanJianChanPinAction" method="kaiQiXiaoShou">
+             	<result type="json">
+             		<param name="root">MSG</param>
+             	</result>
+             </action>  
+               <action name="getChanPinZiLiao" class="faBuDanJianChanPinAction" method="getChanPinZiLiao">
+             	<result type="json">
+             		<param name="root">JSObj</param>
+             	</result>
+             </action>  
+        
+        
+        
+        
+        
+                                                                               
+        
+        
+    <!-- ***************************************采购和邀请**************************************     -->        
+        
+         <action name="getWuLiuGongSi" class="PiLiangDaoRuAction" method="getWuLiuGongSi">
+           <result type="json">
+              <param name="root">JSArr</param>
+           </result>
+        </action>
+        
+        
+    	<action name="getYaoQingJiLu" class="yaoQingFenXiaoShangAction" method="getYaoQingJiLu">
+    		<result type="json">
+    			<param name="root">JSObj</param>
+    		</result>
+    	</action>
+    	<action name="getFenXiaoShangByID" class="yaoQingFenXiaoShangAction" method="getFenXiaoShangByID">
+    		<result type="json">
+    			<param name="root">JSObj</param>
+    		</result>
+    	</action>
+    	<action name="addYaoQingShengChanShang" class="yaoQingFenXiaoShangAction" method="addYaoQingShengChanShang">
+    		<result type="json">
+    			<param name="root">MSG</param>
+    		</result>
+    	</action> 
+    	
+    	<action name="getPayType" class="caiGouDanFaHuoAction" method="getPayType">
+    		<result type="json">
+    			<param name="root">JSArr</param>
+    		</result>
+    	</action>
+    	<action name="getProcureType" class="caiGouDanFaHuoAction" method="getProcureType">
+    		<result type="json">
+    			<param name="root">JSArr</param>
+    		</result>
+    	</action>
+    	<action name="selectCaiGouDan" class="caiGouDanFaHuoAction" method="selectCaiGouDan">
+    		<result type="json">
+    			<param name="root">JSObj</param>
+    		</result>
+    	</action>
+    	<action name="getCaiGouMingXi" class="caiGouDanFaHuoAction" method="getCaiGouMingXi">
+    		<result type="json">
+    			<param name="root">JSObj</param>
+    		</result>
+    	</action>    	        
+        
+        <action name="getCaiGouDanByID" class="caiGouDanFaHuoAction" method="getCaiGouDanByID">
+    		<result type="json">
+    			<param name="root">MSG</param>
+    		</result>
+    	</action>
+    	
+    	<action name="getMyDiZhiByID" class="caiGouDanFaHuoAction" method="getMyDiZhiByID">
+    		<result type="json">
+    			<param name="root">MSG</param>
+    		</result>
+    	</action>        
+ 
+         <action name="CaiGouDanFaHuo" class="caiGouDanFaHuoAction" method="CaiGouDanFaHuo">
+    		<result type="json">
+    			<param name="root">MSG</param>
+    		</result>
+    	</action>     
+        
+                
+    
+    </package>
+
+</struts>    

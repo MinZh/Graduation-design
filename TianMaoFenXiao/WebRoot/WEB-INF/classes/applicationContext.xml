@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName"
+			value="com.microsoft.sqlserver.jdbc.SQLServerDriver">
+		</property>
+		<property name="url"
+			value="jdbc:sqlserver://PC201512262330:1433;databaseName=TianMaoFenXiao">
+		</property>
+		<property name="username" value="sa"></property>
+		<property name="password" value="123"></property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.SQLServerDialect
+				</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>
+					TianMaoFenXiao/pojo/ChanPinXianBiao.hbm.xml
+				</value>
+				<value>TianMaoFenXiao/pojo/LeiMuBiao.hbm.xml</value>
+				<value>TianMaoFenXiao/pojo/DianPuBiao.hbm.xml</value>
+				<value>
+					TianMaoFenXiao/pojo/FenXiaoFangShiBiao.hbm.xml
+				</value>
+				<value>
+					TianMaoFenXiao/pojo/YaoQingFenXiaoShangBiao.hbm.xml
+				</value>
+				<value>
+					TianMaoFenXiao/pojo/DianPuLeiBieBiao.hbm.xml
+				</value>
+				<value>
+					TianMaoFenXiao/pojo/ShangPinZhuangTaiBiao.hbm.xml
+				</value>
+				<value>
+					TianMaoFenXiao/pojo/GongYingShangBiao.hbm.xml
+				</value>
+				<value>TianMaoFenXiao/pojo/WuLiuBiao.hbm.xml</value>
+				<value>
+					TianMaoFenXiao/pojo/DiZhiXinXiBiao.hbm.xml
+				</value>
+				<value>
+					TianMaoFenXiao/pojo/ShangPinLeiBieBiao.hbm.xml
+				</value>
+				<value>TianMaoFenXiao/pojo/KuCunBiao.hbm.xml</value>
+				<value>
+					TianMaoFenXiao/pojo/CaiGouDanMingXiBiao.hbm.xml
+				</value>
+				<value>
+					TianMaoFenXiao/pojo/CaiGouZhuangTaiBiao.hbm.xml
+				</value>
+				<value>
+					TianMaoFenXiao/pojo/ZhiFuLeiXingBiao.hbm.xml
+				</value>
+				<value>TianMaoFenXiao/pojo/ShangPinBiao.hbm.xml</value>
+				<value>TianMaoFenXiao/pojo/CaiGouDanBiao.hbm.xml</value>
+				<value>
+					TianMaoFenXiao/pojo/FenXiaoShangBiao.hbm.xml
+				</value>
+				<value>
+					TianMaoFenXiao/pojo/TaoBaoZhangHao.hbm.xml
+				</value></list>
+		</property></bean>
+		
+		<bean id="dao" class="TianMaoFenXiao.DAO.baseDAO">
+		    <property name="sessionFactory">
+		        <ref bean="sessionFactory"/>
+		    </property>
+		</bean>		
+		
+		<bean id="PiLiangDaoRuService" class="TianMaoFenXiao.Service.PiLiangDaoRuService">
+		    <property name="dao">
+		        <ref bean="dao"/>
+		    </property>
+		</bean>
+		
+		<bean id="baseAction" class="TianMaoFenXiao.Action.baseAction" abstract="true">
+		</bean>
+		
+		<bean id="PiLiangDaoRuAction" class="TianMaoFenXiao.Action.PiLiangDaoRuAction" parent="baseAction">
+		    <property name="piliangdaoruservice">
+		        <ref bean="PiLiangDaoRuService"/>
+		    </property>
+		</bean>
+		
+		
+<!--     **********************************************单件发布，铺货**********************************************		 -->
+		
+	     <bean id="FaBuDanJianChanPinService" class="TianMaoFenXiao.Service.FaBuDanJianChanPinService">
+		    <property name="dao">
+		        <ref bean="dao"/>
+		    </property>
+		</bean>
+		
+		<bean id="faBuDanJianChanPinAction" class="TianMaoFenXiao.Action.FaBuDanJianChanPinAction" parent="baseAction">
+		    <property name="fabudanjianchanpinservice">
+		        <ref bean="FaBuDanJianChanPinService"/>
+		    </property>
+		   </bean>				
+		
+		
+		
+<!--     **********************************************采购和邀请**********************************************		 -->
+
+
+		<bean id="YaoQingFenXiaoShangService" class="TianMaoFenXiao.Service.YaoQingFenXiaoShangService" >
+			<property name="dao">
+				<ref bean="dao"/>
+			</property>
+		</bean>
+		
+		<bean id="CaiGouDanFaHuoService" class="TianMaoFenXiao.Service.CaiGouDanFaHuoService" >
+			<property name="dao">
+				<ref bean="dao"/>
+			</property>
+		</bean>
+		
+		
+		<bean id="yaoQingFenXiaoShangAction" class="TianMaoFenXiao.Action.YaoQingFenXiaoShangAction" parent="baseAction">
+			<property name="yaoqingfenxiaoshangService">
+				<ref bean="YaoQingFenXiaoShangService"/>
+			</property>
+		</bean>
+		
+		<bean id="caiGouDanFaHuoAction" class="TianMaoFenXiao.Action.CaiGouDanFaHuoAction" parent="baseAction">
+			<property name="caigoudanfahuoservice">
+				<ref bean="CaiGouDanFaHuoService"/>
+			</property>
+		</bean>
+		
+		
+		
+		
+			
+		
+		</beans>

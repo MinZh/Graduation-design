@@ -1,0 +1,403 @@
+@CHARSET "UTF-8";
+
+
+/*Search*/
+/* 全局 reset */
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+body, button, input, select, textarea {
+    font: 12px / 1.5 tahoma, arial, \5b8b\4f53;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+}
+
+address, cite, dfn, em, var {
+    font-style: normal;
+}
+
+code, kbd, pre, samp {
+    font-family: courier new, courier, monospace;
+}
+
+small {
+    font-size: 12px;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+sup {
+    vertical-align: text-top;
+}
+
+sub {
+    vertical-align: text-bottom;
+}
+
+legend {
+    color: #000;
+}
+
+fieldset, img {
+    border: 0;
+}
+
+button, input, select, textarea {
+    font-size: 100%;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+#page, #content, #footer {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.w950 {
+    width: 950px;
+}
+
+.col-main {
+    float: left;
+    width: 100%;
+    min-height: 1px;
+}
+
+.col-sub, .col-extra {
+    float: left;
+}
+
+.layout:after, .main-wrap:after, .col-sub:after, .col-extra:after {
+    content: '\20';
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.layout, .main-wrap, .col-sub, .col-extra {
+    zoom: 1;
+}
+
+/* mall search:{{{ */
+
+.top-mallSearch {
+    float: right;
+    padding-top: 18px;
+    width: 520px;
+}
+
+.top-mallSearch-form {
+    border: 2px solid #790c0c;
+    background-color: #990000;
+    z-index: 9999;
+}
+
+.top-mallSearch legend {
+    display: none;
+}
+
+.top-mallSearch fieldset {
+    position: relative;
+}
+
+.top-mallSearch-type  {
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    height: 25px;
+    width: 80px;
+    padding: 1px 0 0 1px;
+    position: absolute;
+    overflow: hidden;
+    border-right: 1px solid #c8c8c8;
+    background-color: #c5c4c4;
+}
+.top-mallSearch-type  .active{
+    background-position: -190px -41px;
+}
+
+.top-mallSearch-type  a ,mallSearch-type a:link { /* 覆盖部分应用默认link样式 */
+    letter-spacing: 4px;
+    display: block;
+    width: 80px;
+    height: 100%;
+    line-height: 24px;
+    color: #676767;
+    text-align: left;
+    padding-left: 8px;
+    outline: none;
+    text-shadow: 1px 1px 1px #fff;
+}
+
+.top-mallSearch-type  a:hover {
+    text-decoration: none;
+}
+
+.top-mallSearch-type  i ,.mallNav-menu i{
+    position: absolute;
+    right: 4px;
+    top: 11px;
+    width: 0;
+    height: 0;
+    border-width: 3px;
+    border-style:solid dashed dashed;
+    border-color: #676767 transparent transparent;
+    font-size: 0;
+    line-height: 0;
+    -webkit-transition: -webkit-transform 0.2s ease-in;
+    -moz-transition: -moz-transform 0.2s ease-in;
+    -o-transition: -o-transform 0.2s ease-in;
+    transition: transform 0.2s ease-in;
+}
+
+.ms-type-hover i ,.mn-menu-hover i {
+    -moz-transform: rotate(180deg);
+    -moz-transform-origin: 50% 30%;
+    -webkit-transform: rotate(180deg);
+    -webkit-transform-origin: 50% 30%;
+    -o-transform: rotate(180deg);
+    -o-transform-origin: 50% 30%;
+    transform: rotate(180deg);
+    transform-origin: 50% 30%;
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation = 2);
+    top: 7px\9;
+}
+
+.top-mallSearch-type:hover {
+    padding: 0;
+    width: 80px;
+    border: 1px solid #fdfdfd;
+    background-color: #dfdfdf;
+    height: auto;
+}
+
+.ms-type-hover a:hover {
+    color: #980101;
+}
+
+.mallSearch-input {
+    background: #fff;
+    height: 26px;
+    position: relative;
+    margin-left: 80px;
+}
+
+/*
+这里采用 label ，input 绝对定位，label在input下方方式
+主要为了一些input的特性保持：
+1.可以拖放文字到输入框
+2.提示信息不让用户选择
+ */
+.top-mallSearch  label {
+    visibility: hidden;
+    color: #666;
+    font-size: 12px;
+    line-height: 24px;
+    height: 24px;
+    position: absolute;
+    left: 8px;
+    +top:1px;
+    z-index: 1;
+}
+
+.top-mq {
+    color: #000; /*覆盖mall tbsp css*/
+    margin: 0; /*覆盖mall base css*/
+    position: absolute;
+    left: 0;
+    z-index: 2;
+    width: 344px;
+    height:25px;
+    line-height: 18px;
+    padding: 4px 2px 4px 5px;
+    border: none;
+    border-left: 1px solid #ececec;
+    border-right: 2px solid #469AB4;
+    font-weight: 900;
+    background: url("data:image/gif;base64,R0lGODlhAQADAJEAAObm5t3d3ff39wAAACH5BAAAAAAALAAAAAABAAMAAAICDFQAOw==") repeat-x scroll 0 0 transparent;
+}
+.clearfix {
+    zoom: 1;
+}
+.top-mallSearch button {
+    float: right;
+    width: 98px;
+    border: 0;
+    font-size: 12px;
+    letter-spacing: 4px;
+    cursor: pointer;
+    color: #fff;
+    background-color: #469AB4;
+    background-position:0 -26px ;
+    line-height: 26px;
+    height: 26px;
+    overflow: hidden;
+}
+
+.top-mallSearch button:hover {
+    background-color:#57C2E4 ;
+    background-position:0 0 ;
+}
+
+button::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+
+/* }}} */
+
+
+/*覆盖 tbsuggest 默认样式*/
+.mall-tb-suggest-container ol {
+    overflow: hidden;
+    zoom: 1;
+    border-bottom: 1px solid #e4e4e4;
+}
+
+.top-mallSearch-tip {
+    margin-top: 1px;
+    height: 20px;
+    padding: 4px 0 5px 10px;
+    line-height: 20px;
+    color: #7f7f7f;
+    clear: both;
+    background-color: #fafafa;
+}
+
+.top-mallSearch-tip .key {
+    height: 20px;
+    vertical-align: middle;
+    display: inline-block;
+    overflow: hidden;
+    line-height: 99em;
+    margin: -2px 5px 0;
+}
+
+.top-mallSearch-tip .tab {
+    background-position: -174px 0;
+    width: 34px;
+    padding: 0;
+}
+
+.top-mallSearch-tip .cmd {
+    background-position: -219px -20px;
+    width: 23px;
+}
+
+.top-mallSearch-tip .ctrl {
+    background-position: -207px 0;
+    width: 35px;
+}
+
+.top-mallSearch-tip .enter {
+    background-position: -174px -20px;
+    width: 44px;
+}
+
+/* }}} */
+
+/*Search end*/
+
+/*邀请分销商window*/
+.center {
+	margin:0 25px;
+	border-style:none none solid none;
+	border-color:#469AB4;
+}
+#logo {
+	margin-left:20px;
+}
+.center .fl a {
+	font:20px/1.5 Tahoma,Helvetica,Arial,'\5b8b\4f53',sans-serif;
+		
+}
+.demo-info1 {
+	background-color:#FFFEE6;
+	border:1px solid;
+	border-color:#8F5700;
+	padding:15px;
+	margin:10px 0 5px 0;
+	font-size:15px;
+}
+.demo-info2 {
+	background-color:#DEEDF7;
+	border:1px solid;
+	border-color:#469AB4;
+	padding:10px;
+	margin:10px 0 15px 0;
+	font-size:13px;
+}
+.demo-info2 button {
+	background-color:#5D92EE;
+	border:0;
+	padding:3px;
+	width:55px;
+}
+#salesManID {
+	background:repeat-x scroll 0 0 transparent;
+	background-color:#ffffff;
+}
+#inviteSalesMan, #mycaigoudan, #fahuo {
+	border:none;
+	padding:0 10px 0 10px;
+}
+#fenxiaoshangxinxi .window-header {
+	visibility:hidden;
+	height:0px;
+}
+.window {
+	background-color:#ffffff;
+}
+.window .window-header {
+	background-color:#ffffff;
+}
+.panel-header {
+	border-color:#ffffff;
+}
+#frmVerifyFenXiaoShang, #queren {
+	border-color:#ffffff;
+}
+
+/*邀请分销商window End*/
+.datagrid-body td {
+	border-right:1px dotted transparent;
+	border-bottom:1px dotted transparent;
+}
+/*我的采购单window*/
+#myCaiGouDan .tabs-header {
+	background-color:#ffffff;
+	border-top-color:#fff;
+	border-left-color:#fff;
+	border-right-color:#fff;
+}
+#myCaiGouDan .tabs-panels {
+	border-left-color:#fff;
+	border-right-color:#fff;
+}
+#SelectTiaoJian div input {
+	background:repeat-x scroll 0 0 transparent;
+	background-color:#ffffff;
+}
+
+/*我的采购单window End*/
+
+
